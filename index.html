@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testimoni Website Ferdinand</title>
+    <!-- ini bootstrap nya cuy jan di remove -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <!-- ini boxicons fungsinya buat create logo -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+      }
+
+      .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+      }
+
+      .card-img-top {
+        height: 200px;
+        object-fit: cover;
+        cursor: pointer;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+
+      .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+      }
+
+      .modal-content {
+        animation-name: zoom;
+        animation-duration: 0.6s;
+      }
+
+      @keyframes zoom {
+        from {
+          transform: scale(0);
+        }
+        to {
+          transform: scale(1);
+        }
+      }
+
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      /* Loader */
+      .loader-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      .loader {
+        transform: rotateZ(45deg);
+        perspective: 1000px;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        color: #0d6efd;
+      }
+
+      .loader:before,
+      .loader:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: inherit;
+        height: inherit;
+        border-radius: 50%;
+        transform: rotateX(70deg);
+        animation: 1s spin linear infinite;
+      }
+
+      .loader:after {
+        color: #0d6efd;
+        transform: rotateY(70deg);
+        animation-delay: 0.4s;
+      }
+
+      @keyframes spin {
+        0%,
+        100% {
+          box-shadow: 0.2em 0px 0 0px currentcolor;
+        }
+        12% {
+          box-shadow: 0.2em 0.2em 0 0 currentcolor;
+        }
+        25% {
+          box-shadow: 0 0.2em 0 0px currentcolor;
+        }
+        37% {
+          box-shadow: -0.2em 0.2em 0 0 currentcolor;
+        }
+        50% {
+          box-shadow: -0.2em 0 0 0 currentcolor;
+        }
+        62% {
+          box-shadow: -0.2em -0.2em 0 0 currentcolor;
+        }
+        75% {
+          box-shadow: 0px -0.2em 0 0 currentcolor;
+        }
+        87% {
+          box-shadow: 0.2em -0.2em 0 0 currentcolor;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loader-container">
+      <div class="loader"></div>
+    </div>
+
+    <div class="container my-5">
+      <h1
+        class="text-center mb-4"
+        style="font-family: 'Pacifico', cursive; font-size: 3rem; color: blue"
+      >
+        Testimoni Transaksi
+      </h1>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img
+              src="img/testi1.jpeg"
+              class="card-img-top"
+              alt="Produk 1"
+              onclick="openModal(this);"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Jasa Pembuatan Website</h5>
+              <p class="card-text">Pembuatan Web TeaTime Untuk Tugas Kuliah</p>
+              <p class="card-text">Harga: Rp 400.000</p>
+              <p class="card-text">Via Payment: Dana</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img
+              src="img/testi2.jpeg"
+              class="card-img-top"
+              alt="Produk 2"
+              onclick="openModal(this);"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Jasa Penambahan Fitur Web</h5>
+              <p class="card-text">Jasa Penambahan Fitur Pada Web</p>
+              <p class="card-text">Harga: Rp 100.000</p>
+              <p class="card-text">Via Payment: Dana</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img
+              src="img/testi3.jpeg"
+              class="card-img-top"
+              alt="Produk 3"
+              onclick="openModal(this);"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Jasa Pembuatan Website</h5>
+              <p class="card-text">Jasa Pembuatan Website TopUp Game</p>
+              <p class="card-text">Harga: Rp 450.000</p>
+              <p class="card-text">Via Payment: Dana</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img
+              src="img/testi4.jpeg"
+              class="card-img-top"
+              alt="Produk 1"
+              onclick="openModal(this);"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Jasa Pembuatan Website</h5>
+              <p class="card-text">Jasa Pembuatan Website Untuk Perusahaan</p>
+              <p class="card-text">Harga: Rp 1.700.000</p>
+              <p class="card-text">Via Payment: Dana</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img
+              src="img/testi5.jpeg"
+              class="card-img-top"
+              alt="Produk 1"
+              onclick="openModal(this);"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Jasa Pembuatan Website</h5>
+              <p class="card-text">Jasa Pembuatan Website Untuk Tugas Kuliah</p>
+              <p class="card-text">Harga: Rp 400.000</p>
+              <p class="card-text">Via Payment: Dana</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img
+              src="img/testi6.jpeg"
+              class="card-img-top"
+              alt="Produk 1"
+              onclick="openModal(this);"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Jasa Pembuatan Tugas Kuliah</h5>
+              <p class="card-text">
+                Jasa Pembuatan Tugas Kuliah Dengan Bahasa Pemrogramman Python
+              </p>
+              <p class="card-text">Harga: Rp 150.000</p>
+              <p class="card-text">Via Payment: Dana</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <a
+          href="https://linktr.ee/jasadigitalbyferdinand"
+          class="btn btn-primary"
+          target="_blank"
+          >Kunjungi Linktree Saya</a
+        >
+      </div>
+    </div>
+
+    <div id="myModal" class="modal">
+      <span class="close">×</span>
+      <img class="modal-content" id="img01" />
+    </div>
+
+    <footer class="bg-light-blue py-3">
+      <div class="container text-center">
+        <a href="https://wa.me/+628970149200" target="_blank" class="mx-2"
+          ><i class="bx bxl-whatsapp bx-sm"></i
+        ></a>
+        <a href="https://www.facebook.com/ferzdev" target="_blank" class="mx-2"
+          ><i class="bx bxl-facebook bx-sm"></i
+        ></a>
+        <a href="https://www.tiktok.com/@ferzinaja" target="_blank" class="mx-2"
+          ><i class="bx bxl-tiktok bx-sm"></i
+        ></a>
+        <a
+          href="https://www.instagram.com/ferzchills"
+          target="_blank"
+          class="mx-2"
+          ><i class="bx bxl-instagram bx-sm"></i
+        ></a>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      var modal = document.getElementById("myModal");
+      var img = document.getElementById("img01");
+      var span = document.getElementsByClassName("close")[0];
+
+      function openModal(imgSrc) {
+        modal.style.display = "block";
+        img.src = imgSrc.src;
+      }
+
+      span.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+    </script>
+    <script>
+      window.addEventListener("load", function () {
+        const loaderContainer = document.querySelector(".loader-container");
+        setTimeout(function () {
+          loaderContainer.style.display = "none";
+        }, 3000);
+      });
+    </script>
+  </body>
+</html>
