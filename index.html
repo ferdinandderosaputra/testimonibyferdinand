@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testimoni Website Ferdinand</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-inner {
+            height: 250px;
+        }
+
+        .carousel-item img {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 10%;
+            background: rgba(0,0,0,0.2);
+            opacity: 0.8;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 0;
+            margin-bottom: 0.5rem;
+            z-index: 2;
+        }
+
+        .carousel-indicators button {
+            width: 10px !important;
+            height: 10px !important;
+            border-radius: 50%;
+            margin: 0 4px !important;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            padding: 20px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            animation: zoom 0.6s;
+        }
+
+        @keyframes zoom {
+            from {transform: scale(0)}
+            to {transform: scale(1)}
+        }
+
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 10px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loader {
+            transform: rotateZ(45deg);
+            perspective: 1000px;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            color: #0d6efd;
+        }
+
+        .loader:before,
+        .loader:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: inherit;
+            height: inherit;
+            border-radius: 50%;
+            transform: rotateX(70deg);
+            animation: 1s spin linear infinite;
+        }
+
+        .loader:after {
+            color: #0d6efd;
+            transform: rotateY(70deg);
+            animation-delay: .4s;
+        }
+
+        @keyframes spin {
+            0%, 100% {
+                box-shadow: .2em 0px 0 0px currentcolor;
+            }
+            12% {
+                box-shadow: .2em .2em 0 0 currentcolor;
+            }
+            25% {
+                box-shadow: 0 .2em 0 0px currentcolor;
+            }
+            37% {
+                box-shadow: -.2em .2em 0 0 currentcolor;
+            }
+            50% {
+                box-shadow: -.2em 0 0 0 currentcolor;
+            }
+            62% {
+                box-shadow: -.2em -.2em 0 0 currentcolor;
+            }
+            75% {
+                box-shadow: 0px -.2em 0 0 currentcolor;
+            }
+            87% {
+                box-shadow: .2em -.2em 0 0 currentcolor;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .carousel-inner {
+                height: 200px;
+            }
+            
+            .carousel-item img {
+                height: 200px;
+            }
+
+            .modal-content {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+    <div class="container my-5">
+        <h1 class="text-center mb-4" style="font-family: 'Pacifico', cursive; font-size: 3rem; color: blue">
+            Testimoni Transaksi
+        </h1>
+
+        <div class="row">
+            <!-- Card 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div id="carousel1" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carousel1" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#carousel1" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#carousel1" data-bs-slide-to="2"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="img/testi1.jpeg" class="d-block w-100" alt="Slide 1" onclick="openModal(this);">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Jasa Pembuatan Website</h5>
+                        <p class="card-text">Pembuatan Web TeaTime Untuk Tugas Kuliah</p>
+                        <p class="card-text">Harga: Rp 400.000</p>
+                        <p class="card-text">Via Payment: Dana</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div id="carousel2" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="2"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="img/testi2.jpeg" class="d-block w-100" alt="Slide 1" onclick="openModal(this);">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Jasa Penambahan Fitur Web</h5>
+                        <p class="card-text">Jasa Penambahan Fitur Pada Web</p>
+                        <p class="card-text">Harga: Rp 100.000</p>
+                        <p class="card-text">Via Payment: Dana</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div id="carousel3" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carousel3" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#carousel3" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#carousel3" data-bs-slide-to="2"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="img/testi3.jpeg" class="d-block w-100" alt="Slide 1" onclick="openModal(this);">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel3" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel3" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Jasa Pembuatan Website</h5>
+                        <p class="card-text">Jasa Pembuatan Website TopUp Game</p>
+                        <p class="card-text">Harga: Rp 450.000</p>
+                        <p class="card-text">Via Payment: Dana</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div id="carousel4" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carousel4" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#carousel4" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#carousel4" data-bs-slide-to="2"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="img/testi4.jpeg" class="d-block w-100" alt="Slide 1" onclick="openModal(this);">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel4" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel4" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Jasa Pembuatan Website</h5>
+                        <p class="card-text">Jasa Pembuatan Website Untuk Perusahaan</p>
+                        <p class="card-text">Harga: Rp 1.700.000</p>
+                        <p class="card-text">Via Payment: Dana</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div id="carousel5" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carousel5" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#carousel5" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#carousel5" data-bs-slide-to="2"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="img/testi5.jpeg" class="d-block w-100" alt="Slide 1" onclick="openModal(this);">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel5" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel5" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Jasa Pembuatan Website</h5>
+                        <p class="card-text">Jasa Pembuatan Website Untuk Tugas Kuliah</p>
+                        <p class="card-text">Harga: Rp 450.000</p>
+                        <p class="card-text">Via Payment: Dana</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div id="carousel6" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carousel6" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#carousel6" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#carousel6" data-bs-slide-to="2"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="img/testi6.jpeg" class="d-block w-100" alt="Slide 1" onclick="openModal(this);">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel6" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel6" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Jasa Pembuatan Tugas Kuliah</h5>
+                        <p class="card-text">Jasa Pembuatan Tugas Kuliah Dengan Bahasa Python</p>
+                        <p class="card-text">Harga: Rp 150.000</p>
+                        <p class="card-text">Via Payment: Dana</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div id="carousel7" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carousel7" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#carousel7" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#carousel7" data-bs-slide-to="2"></button>
+                            <button type="button" data-bs-target="#carousel7" data-bs-slide-to="3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="img/testi7/testi7-1.jpg" class="d-block w-100" alt="Slide 1" onclick="openModal(this);">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/testi7/testi7-2.jpg" class="d-block w-100" alt="Slide 2" onclick="openModal(this);">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/testi7/testi7-3.jpg" class="d-block w-100" alt="Slide 3" onclick="openModal(this);">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/testi7/testi7-4.jpg" class="d-block w-100" alt="Slide 4" onclick="openModal(this);">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel7" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel7" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Jasa Pembuatan Application UI</h5>
+                        <p class="card-text">Jasa Pembuatan Application UI</p>
+                        <p class="card-text">Harga: Rp 420.000</p>
+                        <p class="card-text">Via Payment: Dana</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <a href="https://linktr.ee/jasadigitalbyferdinand" class="btn btn-primary" target="_blank">Kunjungi Linktree Saya</a>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <span class="close">×</span>
+        <img class="modal-content" id="img01" />
+    </div>
+
+    <footer class="bg-light-blue py-3">
+        <div class="container text-center">
+            <a href="https://wa.me/+628970149200" target="_blank" class="mx-2"><i class="bx bxl-whatsapp bx-sm"></i></a>
+            <a href="https://www.facebook.com/ferzdev" target="_blank" class="mx-2"><i class="bx bxl-facebook bx-sm"></i></a>
+            <a href="https://www.tiktok.com/@ferzdev" target="_blank" class="mx-2"><i class="bx bxl-tiktok bx-sm"></i></a>
+            <a href="https://www.instagram.com/ferzchills" target="_blank" class="mx-2"><i class="bx bxl-instagram bx-sm"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Enhanced modal functionality
+        function openModal(imgElement) {
+            const modal = document.getElementById("myModal");
+            const modalImg = document.getElementById("img01");
+            modal.style.display = "block";
+            modalImg.src = imgElement.src;
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal handlers
+        document.querySelector('.close').addEventListener('click', function() {
+            document.getElementById("myModal").style.display = "none";
+            document.body.style.overflow = 'auto';
+        });
+
+        window.onclick = function(event) {
+            const modal = document.getElementById("myModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = 'auto';
+            }
+        };
+
+        // Initialize carousels with unique IDs
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousels = document.querySelectorAll('.carousel');
+            carousels.forEach((carousel, index) => {
+                const uniqueId = `carousel-${index + 1}`;
+                carousel.id = uniqueId;
+                
+                const indicators = carousel.querySelectorAll('.carousel-indicators button');
+                indicators.forEach((indicator, i) => {
+                    indicator.setAttribute('data-bs-target', `#${uniqueId}`);
+                    indicator.setAttribute('data-bs-slide-to', i.toString());
+                });
+
+                const controls = carousel.querySelectorAll('.carousel-control-prev, .carousel-control-next');
+                controls.forEach(control => {
+                    control.setAttribute('data-bs-target', `#${uniqueId}`);
+                });
+            });
+        });
+
+        // Loader
+        window.addEventListener("load", function() {
+            const loaderContainer = document.querySelector(".loader-container");
+            setTimeout(function() {
+                loaderContainer.style.display = "none";
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
